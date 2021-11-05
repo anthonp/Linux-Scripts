@@ -3,6 +3,8 @@
 
 # youtube-dl script which can be looped to copy in 
 # multiple albums from a single artist after doctoring with playlist links
+# Dependency: youtube-dl and its dependencies
+
 
 # First loop through
 #mkdir ~/MusicAlbums/[Replace with name of Album]
