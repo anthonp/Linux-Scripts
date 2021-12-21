@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# Anthony, Created On: 9/24/2021, Description: A program that goes overboard.
+
+RED='\033[0;31m'
+NC='\033[0m' #NoColors
+
+#TASK 1:
+printf "\n#START";
+printf ${RED}"\n\nTASK 1.\n\nEGREP INFO: "${NC}; 
+printf "Find \"/bin/bash\" at the end of the line in \"/etc/passwd\".\n\n";
+printf 'egrep --color "/bin/bash$" /etc/passwd;'"\n\n";
+egrep --color "/bin/bash$" /etc/passwd; 
+printf "\n";
+
+#TASK 2:
+printf ${RED}"\n\nTASK 2.\n\nEGREP INFO: "${NC};
+printf "Find lines that do not end in \"/sbin/nologin\" in \"/etc/passwd\". \n\n";
+printf 'egrep --color -v "/sbin/nologin$" /etc/passwd;'"\n\n";
+egrep --color -v "/sbin/nologin$" /etc/passwd;
+printf "\n";
+
+#TASK 3:
+printf ${RED}"\n\nTASK 3.\n\nEGREP INFO: "${NC};
+printf "Find the current username (a variable) within \"/etc\", searching recusively\n\n";
+printf 'egrep --color -r "${USER}" /etc;'"\n\n";
+egrep --color -r "${USER}" /etc;
+printf "\n";
+
+#TASK 4:
+printf ${RED}"\n\nTASK 4.\n\nEGREP INFO: "${NC};
+printf "Find lines without comments or empty lines in \"/etc/hosts\"\n\n";
+printf 'egrep -v "^#|^$" /etc/hosts;'"\n";
+egrep -v "^#|^$" /etc/hosts; 
+printf "\n";
+
+#TASK 5: 
+printf ${RED}"\n\nTASK 5.\n\nEGREP INFO: "${NC};
+printf "Instead of a file, use the pipeline to find only IP addresses\n\n";
+printf 'ip a | egrep -o "([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])";'"\n";
+ip a | egrep -o "([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])";
+printf "\n";
+
+#EXPERIMENTAL FOOTNOTES:
+printf ${RED}"\n\nExperimental IPs:\n\n"${NC};
+printf "What if we encounter numbers greater than 255.255.255.255?\nThe problem with my simple REGEX is that it can take answers greater than units of 255\nWell, we can filter them out with simple math\nHere is a proof of concept:\n\n";
+printf 'ip1=192.168.0.10'"\n";
+printf 'ip2=10.34.60.1'"\n";
+printf 'notIp=256.256.256.256'"\n";
+printf '"exp="([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])"';
+
+ip1=192.168.0.10
+ip2=10.34.60.1
+notIp=256.256.256.256
+exp="([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])\.([0-2]?[0-9]?[0-9])"
+
+
+# In its current form, it is not practical in this configuration, 
+# you would need to pipe stdout to a variable, which can be done, or you could 
+# rework this code to take directly from stdout.
+
+if [[ ${ip1} =~ ${exp} ]] && [ ${ip1} != ${notIp} ]; 
+then 
+ printf "\${ip1} TRUE\n\n";
+else
+ printf "FALSE\n\n";
+fi
+
+if [[ ${ip2} =~ ${exp} ]] && [ ${ip2} != ${notIp} ];
+then 
+ printf "\${ip2} TRUE\n\n";
+else
+ printf "FALSE\n\n";
+fi
+
+if [[ ${notIp} =~ ${exp} ]] && [ ${notIp} != ${notIp} ];
+then 
+ printf "TRUE\n\n";
+else
+ printf "\${notIp} FALSE\n\n";
+fi
+
+printf "#END\n";
+#EOF

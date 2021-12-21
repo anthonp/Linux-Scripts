@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Anthony, created on 11/9/21
+
+# Assigning variable values to an associative array and their indices.
+
+declare -A users;
+
+for lines in $(egrep -v "(nologin|false)$" /etc/passwd); do 
+   username="$(echo ${lines} | cut -d ":" -f1)";
+   homedir="$(echo ${lines} | cut -d ":" -f6)"; 
+   users[${username}]=${homedir};
+done
+
+for i in ${!users[*]}; do 
+   echo "${i} -> ${users[${i}]}";
+done
+#EOF

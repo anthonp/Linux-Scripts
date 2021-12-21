@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Anthony created on 11/18/2021
+
+# Recursive factorial
+
+fact=1;
+
+if [ ${1-0} -gt 1  ]; then
+   fact=$(( ${1} * $($0 $(($1 - 1)))  ));
+fi
+
+echo ${fact};
+#EOF

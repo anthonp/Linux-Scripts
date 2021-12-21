@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Anthony created 12/7/2021
+
+# Program that returns process information.
+
+if [ $# != 0 ]; then 
+   printf "Executable: $(readlink /proc/${1}/exe)" 
+   printf "\n\nFile Descriptors: $(ls -l /proc/${1}/fd | cut -d " " -f 10- | sort -n)\n"
+else
+   printf "Executable: $(readlink /proc/$$/exe)"
+   printf "\n\nFile Descriptors: $(ls -l /proc/$$/fd | cut -d " " -f 10- | sort -n)\n"
+fi
+#EOF

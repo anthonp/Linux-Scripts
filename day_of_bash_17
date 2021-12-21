@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Anthony, created on 11/30/2021
+
+# This is a demonstration of "awk" to print specific headers from "ps aux"
+
+ps aux | awk '{print $3, $4, $11}';
+#EOF

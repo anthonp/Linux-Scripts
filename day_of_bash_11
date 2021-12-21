@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Anthony, Created on 10/21/21
+
+# This program loops over each match in /var/log/messages where a match is "sshd"
+
+egrep "sshd" /var/log/messages | while read line; do
+  datevar="$(line | cut -c 1-10)";
+  timevar="$(line | cut -c 12-19)";
+  sshdvar="$(line | cut -d ' ' -f 4-)";
+  echo "${datevar} ${timevar} ${sshdvar}";
+done
+#EOF

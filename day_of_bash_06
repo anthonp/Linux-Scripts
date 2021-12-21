@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#Anthony created on 9/28/2021
+# Modified 9/30/2021
+
+# This program tests for user input parameters, and prints the parameter to screen.
+# This program now also tests the type of input object.
+
+# If file = true:
+if [ "${#}" -eq "1" ]; then
+  exit 0;
+else
+  printf 'There is an error. In order to use this program, please indicate your (1) parameter after run command.'"\n";
+  exit 1;
+fi 
+
+# File type:
+if [ -h ${1} ]; then
+  printf "${1} is a symbolic link, and exists.\n";
+elif [ -f ${1} ]; then
+  printf "${1} is a regular file, and exists.\n";  
+elif [ -d ${1} ]; then
+  printf "${1} is a directory, and exists.\n";
+elif [ -b ${1} ]; then
+  printf "${1} is a block device, and exists.\n";
+elif [ -s ${1} ]; then
+  printf "${1} is not zero sized, and exists.\n";
+elif [ -e ${1} ]; then
+  printf "${1} exists, but is not a recognized file type by this program.\n";
+else
+  printf "${1} does not exist.\n" ;
+fi
+#EOF

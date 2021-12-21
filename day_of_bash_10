@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Created by Anthony on 10/19/21
+
+# This program uses a for loop to calculate a factorial
+
+factorial=1;
+
+for (( i=1;i<=${1};i++ )); do
+  factorial=$(( ${factorial} * ${i} ));
+done
+
+echo "${1}! = ${factorial}";
+#EOF

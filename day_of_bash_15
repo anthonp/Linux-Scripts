@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Created by Anthony on 11/16/2021
+# Creating a factorial function
+
+# ---Factorial Math---
+#factorial=1;
+
+#for (( i=1;i<=${1};i++ )); do
+  #factorial=$(( ${factorial} * ${i} ));
+#done
+
+#echo "${1}! = ${factorial}";
+# ---End Of Work---
+
+
+#Function defined
+function factorials(){
+   #Initializing the function
+   factorial=1;
+   for (( i=1;i<=${1};i++ )); do
+     #Math which incrementally steps the function
+     factorial=$(( ${factorial} * ${i} ));
+   done
+  
+   echo "${1}! = ${factorial}";
+}
+
+factorials $1;
+#EOF

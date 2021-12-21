@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Anthony
+# Created on 12/13/2021
+# This project loops over the output of "ip n" and tells if addresses are reachable.
+
+ip_addresses="$(ip n | cut -d " " -f1)";
+
+for address in ${ip_addresses}; do
+   ping -c 1 ${address} &> /dev/null;
+   if [ $? -ne 0 ]; then
+      echo "${address} is DOWN";
+   else
+      echo "${address} is UP";
+   fi
+done
+#EOF

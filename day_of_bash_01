@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Anthony, Created: 9/2/2021, Modified: 9/7/2021
+
+# Second hello world demo
+
+PURPLE='\033[0;35m'
+NC='\033[0m' #NoColors
+
+printf "${PURPLE}Hello, world!${NC}\n";
+#EOF

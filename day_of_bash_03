@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Anthony, Created 9/17/21
+
+# Covering parameters/logs:
+
+# VARS:
+DTTM="$(date +'%Y-%m-%d %T')"
+H=$HOSTNAME
+U=$USER
+
+# Echo date, host, user, and input to log file:
+printf "[${DTTM}] ${H} ${U}: $*\n";
+#EOF

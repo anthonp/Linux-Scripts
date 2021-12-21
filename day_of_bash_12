@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Anthony created on 10/26/2021
+
+# This script replaces an if statement with && and || operations and functions.
+
+# Program for testing purposes.
+#if [ ${UID} -ne 0 ]; then
+#  echo "Please run this program as root.";
+#  exit 1;
+#fi
+
+# Program for interpretation:
+
+[ ${UID} -ne 0 ] && echo "Please run this program as root!" && exit 1;
+exit 0;
+#EOF

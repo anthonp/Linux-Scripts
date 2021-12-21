@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Hello World in bash
+
+RED='\033[0;31m'
+NC='\033[0m' #NoColors
+printf "Hello, ${RED}WORLD${NC}\n"
+#EOF

@@ -1,0 +1,35 @@
+#!/bin/bash
+# Anthony, Created: 9/17/2021, 
+# ENV VARs and PARAMs
+
+# Vars set for ease of reference
+H=$HOSTNAME
+U=$USER
+O=$OSTYPE
+MOS=$MACHTYPE
+D=$(head -n 1 /etc/*-release)
+RED='\033[0;31m'
+NC='\033[0m' #NoColors
+INFO=`date`
+
+# Simple prints:
+printf "\nДобро Пожаловать, ${RED}Антон${NC}\n\n" && printf "${RED}PARAMS: ${NC}";
+echo $0 $*;
+printf "\n${INFO}\n\n";
+printf "${RED}HOSTNAME: ${NC} ${H}\n" && printf "${RED}CURRENT USER: ${NC} ${U}\n";
+printf "${RED}OS INFO: ${NC} ${O}," && printf " ${D}, ${MOS}\n\n...\n\n";
+
+# Super hacker "if" statement:
+if [ ${U} = ${USER} ]
+then
+ printf "Welcome back, ${RED}hacker${NC} man\n\n";
+else
+ printf "Don't touch anything\n";
+fi
+
+# Contents, perms, and fun print:
+ls -l "/home/${U}/";
+groups $U;
+printf "\nOopsie, you had a ${RED}leak${NC}\n\n";
+printf "Computer Science doesn't know what it would do without Prof Smith!\n\n";
+#EOF

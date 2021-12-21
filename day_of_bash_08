@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#Anthony created on 10/09/2021
+# Modified 10/08/2021
+
+# This program tests for user input parameters, and prints the parameter to screen.
+# This program now also tests the type of input object.
+# This program now tells the sizes of directory and file objects.
+# This program now tells sizes in rough percentages.
+
+# If file = true:
+if [ "${#}" -ne "1" ]; then
+  printf "Usage: ${0} <path>""\n";
+  exit 1;
+fi 
+
+# File type:
+if [ -h ${1} ]; then
+  echo "Symbolic link: ${1}";
+elif [ -d ${1} ]; then
+  #Directory and ParentDir Size:
+  basedir="$(du -s ${1} | cut -f1)";
+  parentdir="$(du -s $(dirname ${1}) | cut -f1)";
+  echo "Directory: ${1} (${basedir}KB, $((${basedir}*100/${parentdir}))% of $(dirname ${1}))";  
+elif [ -b ${1} ]; then
+  echo "Block device: ${1}";
+elif [ -f ${1} ]; then
+  #File and ParentDir Size:
+  filesize="$(du ${1} | cut -f1)";
+  dirsize="$(du -s $(dirname ${1}) | cut -f1)";
+  echo "Regular file: ${1} (${filesize}KB, $((${filesize}*100/${dirsize}))% of $(dirname ${1}))";
+elif [ -e ${1} ]; then
+  echo "Something else: ${1}";
+else
+  echo "Missing: ${1}";
+fi
+#EOF
